@@ -46,7 +46,12 @@
 	xref	clearVdpRam
 	xref	VDP_CTRL
 
-SCENE_COUNT	EQU	3								; Number of entries in sceneTable
+	; from waterfall.s
+	xref	waterfallInit
+	xref	waterfallRender
+	xref	waterfallUpdate
+
+SCENE_COUNT	EQU	4								; Number of entries in sceneTable
 
 	section .text
 
@@ -61,6 +66,7 @@ sceneTable:
 	dc.l		cycleColorsInit,	cycleColorsUpdate,	cycleColorsRender
 	dc.l		parallaxInit,			parallaxUpdate,			parallaxRender
 	dc.l		coastRoadInit,		coastRoadUpdate,		coastRoadRender
+	dc.l		waterfallInit,		waterfallUpdate,		waterfallRender
 
 ; ------------------------------------------------------------------------------
 ; initScene
