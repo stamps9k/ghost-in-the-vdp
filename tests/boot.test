@@ -1,0 +1,8 @@
+# Boot into the colour-cycle scene and watch the background advance.
+# cycleColorsUpdate steps the colour every 64 frames (frame_count & 63 == 0).
+run 30
+shot boot-black             66e79f26 # nothing drawn before the first step
+run 50
+shot first-step             aa58f654 # green
+run 64
+shot second-step            d5f97892 # blue

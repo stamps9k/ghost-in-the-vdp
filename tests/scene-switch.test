@@ -1,0 +1,13 @@
+# Right on the D-pad wraps the scene manager back to the only scene, which
+# re-runs cycleColorsInit. The colour only redraws on 64-frame boundaries,
+# so each shot is taken just past one.
+run 150
+shot before-switch          d5f97892 # blue: two steps in
+press right
+run 70
+shot after-switch           aa58f654 # green: reset to 0, then one step
+run 64
+shot advancing-again        d5f97892 # blue
+hold start
+run 64
+shot start-held             aa58f654 # green: Start resets before the step

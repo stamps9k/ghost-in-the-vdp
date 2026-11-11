@@ -53,3 +53,9 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# Ghost in the VDP build and test output
+rom/build/
+rom/pkg/
+out/
+harness/mdharness
