@@ -1,0 +1,7 @@
+.git
+.github
+rom/build/
+rom/pkg/
+
+out/
+harness/mdharness
