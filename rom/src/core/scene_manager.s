@@ -123,6 +123,8 @@ updateScene:
 	move.w	d0,active_effect
 	bsr 		initScene
 .sceneHandling:
+	move.b	current_joy_status,d1	; reloaded: a scene init run above is
+	move.b	previous_joy_status,d2	; free to clobber them
 	move.w	active_effect,d0
 	mulu		#12,d0
 	lea			sceneTable,a0					; Start of the scene table
@@ -142,6 +144,8 @@ cleanUp:
 	jsr			hblankDisable					; Set the hblank handler to nothing
 .hscrollCleanup:
 	move.w	#$8B00,VDP_CTRL				; reg 11 = 0, full-screen scroll again
+.windowCleanup:
+	move.w	#$9200,VDP_CTRL				; reg 18 = 0, no window rows
 .vramCleanup:
 	jsr			clearVdpRam
 .done:
