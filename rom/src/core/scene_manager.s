@@ -24,6 +24,11 @@
 	xref	coastRoadRender
 	xref	coastRoadUpdate
 
+	; from credits.s
+	xref	creditsInit
+	xref	creditsRender
+	xref	creditsUpdate
+
 	; from color_cycle.s
 	xref	cycleColorsInit
 	xref	cycleColorsRender
@@ -51,7 +56,7 @@
 	xref	waterfallRender
 	xref	waterfallUpdate
 
-SCENE_COUNT	EQU	4								; Number of entries in sceneTable
+SCENE_COUNT	EQU	5								; Number of entries in sceneTable
 
 	section .text
 
@@ -67,6 +72,7 @@ sceneTable:
 	dc.l		parallaxInit,			parallaxUpdate,			parallaxRender
 	dc.l		coastRoadInit,		coastRoadUpdate,		coastRoadRender
 	dc.l		waterfallInit,		waterfallUpdate,		waterfallRender
+	dc.l		creditsInit,			creditsUpdate,			creditsRender
 
 ; ------------------------------------------------------------------------------
 ; initScene

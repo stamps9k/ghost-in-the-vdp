@@ -28,6 +28,11 @@ Treat that code as the house style.
 - Never regenerate CRCs just to make a failing test pass. A changed CRC on
   an existing shot is a visual change; explain it in the PR or fix the
   regression.
+- The credits scene's background is a hex dump of its own machine code, so
+  its shots (`credits.test`, and `credits-entered` in `scene-switch.test`)
+  change whenever `credits.s` is edited or code linked ahead of it changes
+  size. That is expected: check the screenshots show the same picture with
+  different hex digits, then update those CRCs and say so in the PR.
 - The owner tests on real hardware and other emulators. When an effect
   depends on cycle-exact timing (HBlank work, mid-frame VDP writes), say so
   in the PR so it gets a hardware check before merge.

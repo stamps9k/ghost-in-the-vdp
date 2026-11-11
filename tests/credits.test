@@ -1,0 +1,35 @@
+# AI credits: enter from the colour cycle with Left (it wraps to the last
+# scene). The credits scroll half a pixel a frame, so a full screen of
+# text takes about 450 frames to arrive. Then step through the wave
+# modes, reverse, pause, and run on until the credits have looped.
+#
+# The background is a hex dump of the scene's own code, so these CRCs
+# change whenever credits.s, or code linked ahead of it, changes (see
+# CLAUDE.md).
+run 20
+press left
+run 40
+shot entered               7469cc3b # banner, hex dump, title line rippling in at the bottom
+run 460
+shot melt                  07f5ec9d # full screen: calm in the middle, melting at top and bottom
+press c
+run 30
+shot ripple                ad1f33b5 # C: the same gentle ripple on every line
+press c
+run 30
+shot off                   663e2f95 # C: no wave; text and hex dump both straight
+press c
+run 30
+shot melt-again            2c1b3aa8 # C: back to the edge melt
+press b
+run 200
+shot reverse               7585c87e # B: credits scroll down (title back near the top), hex dump up
+press start
+run 30
+shot paused-a              0fd39892 # Start: paused...
+run 60
+shot paused-b              0fd39892 # ...so this frame must match paused-a
+press start
+press b
+run 1400
+shot looped                635ff7b6 # forward again; credits ended and started over
