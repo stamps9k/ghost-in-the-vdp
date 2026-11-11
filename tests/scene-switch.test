@@ -1,13 +1,16 @@
-# Right on the D-pad wraps the scene manager back to the only scene, which
-# re-runs cycleColorsInit. The colour only redraws on 64-frame boundaries,
-# so each shot is taken just past one.
+# Right steps the scene manager forward: colour cycle -> parallax, then
+# wraps back to the colour cycle, which re-runs cycleColorsInit. The colour
+# cycle only redraws on 64-frame boundaries of frame_count, which runs about
+# 7 frames behind the emulator's count (interrupts are masked during boot),
+# so its steps land at emulator frames 71, 135, 199, 263, 327...
 run 150
-shot before-switch          d5f97892 # blue: two steps in
+shot before-switch         d5f97892 # blue: two steps in
 press right
-run 70
-shot after-switch           aa58f654 # green: reset to 0, then one step
-run 64
-shot advancing-again        d5f97892 # blue
+run 40
+shot parallax-entered      964d718e # parallax city
+press right
+run 50
+shot back-to-colours       aa58f654 # green: reset at the switch, stepped at 199
 hold start
 run 64
-shot start-held             aa58f654 # green: Start resets before the step
+shot start-held            aa58f654 # green: Start resets before the 263 step

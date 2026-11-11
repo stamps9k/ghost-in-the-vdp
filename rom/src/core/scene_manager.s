@@ -27,6 +27,11 @@
 	; from h_blank.s
 	xref	hblankDisable
 
+	; from parallax.s
+	xref	parallaxInit
+	xref	parallaxRender
+	xref	parallaxUpdate
+
 	; from state.s
 	xref	active_effect
 	xref	current_joy_status
@@ -36,7 +41,7 @@
 	xref	clearVdpRam
 	xref	VDP_CTRL
 
-SCENE_COUNT	EQU	1								; Number of entries in sceneTable
+SCENE_COUNT	EQU	2								; Number of entries in sceneTable
 
 	section .text
 
@@ -49,6 +54,7 @@ SCENE_COUNT	EQU	1								; Number of entries in sceneTable
 ; ------------------------------------------------------------------------------
 sceneTable:
 	dc.l		cycleColorsInit,	cycleColorsUpdate,	cycleColorsRender
+	dc.l		parallaxInit,			parallaxUpdate,			parallaxRender
 
 ; ------------------------------------------------------------------------------
 ; initScene
@@ -122,6 +128,8 @@ cleanUp:
 	move.w	#$8F02,VDP_CTRL				; reg 15 = 2, resume normal increment
 .hblankCleanup:
 	jsr			hblankDisable					; Set the hblank handler to nothing
+.hscrollCleanup:
+	move.w	#$8B00,VDP_CTRL				; reg 11 = 0, full-screen scroll again
 .vramCleanup:
 	jsr			clearVdpRam
 .done:

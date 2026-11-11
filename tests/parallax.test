@@ -1,0 +1,23 @@
+# Parallax city: enter from the colour cycle with Right, let init finish
+# (the display is blanked for about 6 frames while it builds), then
+# exercise speed, direction and pause.
+run 20
+press right
+run 30
+shot city-start            0d4d20a8
+run 120
+shot city-cruise           47de05a5 # 1 px/frame for 120 frames
+press c
+run 60
+shot city-fast             7c072e1a # C: 2 px/frame
+press b
+run 40
+shot city-reverse          8aa2bb50 # B: camera now moving left
+press start
+run 30
+shot paused-a              8aa2bb50 # Start: paused...
+run 60
+shot paused-b              8aa2bb50 # ...so this frame must match paused-a
+press start
+run 30
+shot resumed               521ddaeb # moving left again from where it stopped
