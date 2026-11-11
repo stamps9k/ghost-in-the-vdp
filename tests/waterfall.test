@@ -1,0 +1,24 @@
+# Waterfall: enter from the colour cycle with Left (it wraps to the last
+# scene). Init keeps the display off for about 58 frames while it
+# generates the tiles and runs the spray up to speed. Then watch the
+# flow, and exercise speed, reverse and pause.
+run 20
+press left
+run 80
+shot falls-start           0fd93b6e # moon, cliffs, falls, pool, spray in full flow
+run 60
+shot falls-flow            ca223093 # palette has stepped; spray and ripples moved
+press c
+run 60
+shot falls-fast            d0ebcb95 # C: 3/4 of a step per frame
+press b
+run 60
+shot falls-reverse         faa279f7 # B: water climbs, spray falls back
+press start
+run 30
+shot paused-a              faa279f7 # Start: paused...
+run 60
+shot paused-b              faa279f7 # ...so this frame must match paused-a
+press start
+run 30
+shot resumed               30ed63bd # still reversed, from where it stopped

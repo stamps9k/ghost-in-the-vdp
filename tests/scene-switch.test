@@ -1,5 +1,6 @@
 # Right steps the scene manager forward: colour cycle -> parallax -> coast
-# road, then wraps back to the colour cycle, which re-runs cycleColorsInit.
+# road -> waterfall, then wraps back to the colour cycle, which re-runs
+# cycleColorsInit.
 # The colour cycle only redraws on 64-frame boundaries of frame_count,
 # which runs about 7 frames behind the emulator's count (interrupts are
 # masked during boot), so its steps land at emulator frames 71, 135, 199,
@@ -13,8 +14,11 @@ press right
 run 40
 shot coast-entered         65991885 # coast road (init blanks ~21 frames)
 press right
+run 80
+shot waterfall-entered     0fd93b6e # waterfall (init blanks ~58 frames)
+press right
 run 40
-shot back-to-colours       aa58f654 # green: reset at the switch, stepped at 263
+shot back-to-colours       aa58f654 # green: reset at the switch, stepped at 327
 hold start
 run 64
-shot start-held            aa58f654 # green: Start resets before the 327 step
+shot start-held            aa58f654 # green: Start resets before the 391 step
