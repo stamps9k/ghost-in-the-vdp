@@ -15,7 +15,7 @@ run 40
 shot coast-entered         65991885 # coast road (init blanks ~21 frames)
 press right
 run 80
-shot waterfall-entered     fe8ee225 # waterfall (init blanks ~58 frames)
+shot waterfall-entered     0fd93b6e # waterfall (init blanks ~58 frames)
 press right
 run 40
 shot back-to-colours       aa58f654 # green: reset at the switch, stepped at 327

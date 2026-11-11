@@ -98,10 +98,12 @@ LIP_RIGHT_COL			EQU FALLS_COL+FALLS_COLS
 INNER_FACE_COL		EQU LIP_LEFT_COL-1		; left gorge wall, lit by the moon
 POOL_ROW					EQU FALLS_ROW+FALLS_ROWS
 POOL_ROWS					EQU VISIBLE_ROWS-POOL_ROW
-STAR_ROWS					EQU 6								; stars appear in rows 0-5
 MOON_ROW					EQU 1								; moon covers rows 1-2
 MOON_COL					EQU 31							; and columns 31-32
 SKY_ROWS					EQU 8								; one sky colour per row 0-7
+STAR_ROWS					EQU SKY_ROWS				; stars in every sky row, down to the
+																; lowest cliff tops
+STAR_CHANCE				EQU 7								; mask: a star where random & 7 = 0
 
 ; ------------------------------------------------------------------------------
 ; Cliff tops (rows): highest beside the falls, falling away towards the
@@ -1317,7 +1319,7 @@ buildPlaneB:
 ; ------------------------------------------------------------------------------
 ; skyTile
 ; Picks the sky tile for one cell above the cliffs: the moon, a star (1 in
-; 16 cells of the star rows), or plain sky in the row's colour.
+; STAR_CHANCE+1 cells), or plain sky in the row's colour.
 ;
 ; Input:  d6.w = row, d7.w = column
 ; Output: d0.w = name table entry
@@ -1340,9 +1342,11 @@ skyTile:
 .notMoon:
 	cmpi.w	#STAR_ROWS,d6
 	bge.s		.plainSky
-	bsr			nextRandom
+	bsr			nextRandom						; three steps for three fresh low
+	bsr			nextRandom						; bits: consecutive LFSR values share
+	bsr			nextRandom						; bits, which clumps the stars
 	move.w	d0,d1
-	andi.w	#15,d1
+	andi.w	#STAR_CHANCE,d1
 	bne.s		.plainSky
 	lsr.w		#4,d0
 	andi.w	#1,d0									; variant

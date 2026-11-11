@@ -5,20 +5,20 @@
 run 20
 press left
 run 80
-shot falls-start           fe8ee225 # moon, cliffs, falls, pool, spray in full flow
+shot falls-start           0fd93b6e # moon, cliffs, falls, pool, spray in full flow
 run 60
-shot falls-flow            57d77b50 # palette has stepped; spray and ripples moved
+shot falls-flow            ca223093 # palette has stepped; spray and ripples moved
 press c
 run 60
-shot falls-fast            0f9d3f87 # C: 3/4 of a step per frame
+shot falls-fast            d0ebcb95 # C: 3/4 of a step per frame
 press b
 run 60
-shot falls-reverse         77f9b458 # B: water climbs, spray falls back
+shot falls-reverse         faa279f7 # B: water climbs, spray falls back
 press start
 run 30
-shot paused-a              77f9b458 # Start: paused...
+shot paused-a              faa279f7 # Start: paused...
 run 60
-shot paused-b              77f9b458 # ...so this frame must match paused-a
+shot paused-b              faa279f7 # ...so this frame must match paused-a
 press start
 run 30
-shot resumed               9fb82661 # still reversed, from where it stopped
+shot resumed               30ed63bd # still reversed, from where it stopped
