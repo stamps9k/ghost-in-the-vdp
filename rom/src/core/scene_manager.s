@@ -19,6 +19,11 @@
 	; ----------------------------------------------------------------------------
 	; External references
 	; ----------------------------------------------------------------------------
+	; from coast_road.s
+	xref	coastRoadInit
+	xref	coastRoadRender
+	xref	coastRoadUpdate
+
 	; from color_cycle.s
 	xref	cycleColorsInit
 	xref	cycleColorsRender
@@ -41,7 +46,7 @@
 	xref	clearVdpRam
 	xref	VDP_CTRL
 
-SCENE_COUNT	EQU	2								; Number of entries in sceneTable
+SCENE_COUNT	EQU	3								; Number of entries in sceneTable
 
 	section .text
 
@@ -55,6 +60,7 @@ SCENE_COUNT	EQU	2								; Number of entries in sceneTable
 sceneTable:
 	dc.l		cycleColorsInit,	cycleColorsUpdate,	cycleColorsRender
 	dc.l		parallaxInit,			parallaxUpdate,			parallaxRender
+	dc.l		coastRoadInit,		coastRoadUpdate,		coastRoadRender
 
 ; ------------------------------------------------------------------------------
 ; initScene

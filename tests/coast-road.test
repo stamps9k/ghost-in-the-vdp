@@ -1,0 +1,30 @@
+# Coast road: enter with Right twice (colour cycle -> parallax -> coast
+# road). Init keeps the display off for about 21 frames while it builds
+# the planes. Then drive the track at full speed through the long
+# right-hander and into the hard left, and exercise reverse and pause.
+run 20
+press right
+run 20
+press right
+run 40
+shot road-start            65991885 # straight road, sun, sea, palms
+# C twice (released in between): half a phase per frame -> a full phase
+press c
+run 2
+press c
+run 250
+shot road-right            9d66a1c3 # full right-hander; background slid left
+run 430
+shot road-left             4eb456c3 # hard left; background slid back right
+press b
+run 120
+shot road-reverse          38248814 # B: backing out of the left-hander
+run 10
+press start
+run 30
+shot paused-a              392453b0 # Start: paused...
+run 60
+shot paused-b              392453b0 # ...so this frame must match paused-a
+press start
+run 30
+shot resumed               cad3044e # still reversing, nearly straight
