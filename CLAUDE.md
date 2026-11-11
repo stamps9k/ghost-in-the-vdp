@@ -28,6 +28,11 @@ Treat that code as the house style.
 - Never regenerate CRCs just to make a failing test pass. A changed CRC on
   an existing shot is a visual change; explain it in the PR or fix the
   regression.
+- The credits scene's background is a hex dump of its own machine code, so
+  its shots (`credits.test`, and `credits-entered` in `scene-switch.test`)
+  change whenever `credits.s` is edited or code linked ahead of it changes
+  size. That is expected: check the screenshots show the same picture with
+  different hex digits, then update those CRCs and say so in the PR.
 - The owner tests on real hardware and other emulators. When an effect
   depends on cycle-exact timing (HBlank work, mid-frame VDP writes), say so
   in the PR so it gets a hardware check before merge.
@@ -114,8 +119,12 @@ assembly. Points that are easy to get wrong:
   `cleanUp` in the scene manager calls `hblankDisable` on every switch.
 - VDP register 10 is $01 at boot (HBlank every other line). A scene that
   changes it must restore it.
-- VDP register 11 (scroll modes) is $00 at boot. `cleanUp` resets it on
-  every scene switch, so a scene may change it freely in init.
+- VDP registers 11 (scroll modes) and 18 (window rows) are $00 at boot.
+  `cleanUp` resets both on every scene switch, so a scene may change them
+  freely in init.
+- A scene's update is called in the same frame as its init. `updateScene`
+  reloads the pad state into d1/d2 after the init, so the init may clobber
+  them.
 - Large per-frame VRAM uploads go through `dmaToVram` (lib/dma.s). Read its
   header for the rules: never a length of 0, ROM sources must not cross a
   128KB boundary, and the Z80 must stay held as main.s leaves it.

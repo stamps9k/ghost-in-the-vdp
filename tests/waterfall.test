@@ -1,8 +1,11 @@
-# Waterfall: enter from the colour cycle with Left (it wraps to the last
-# scene). Init keeps the display off for about 58 frames while it
-# generates the tiles and runs the spray up to speed. Then watch the
-# flow, and exercise speed, reverse and pause.
-run 20
+# Waterfall: enter from the colour cycle with Left twice (Left wraps to the
+# last scene, the credits; the waterfall is the one before it). Init keeps
+# the display off for about 58 frames while it generates the tiles and
+# runs the spray up to speed. Then watch the flow, and exercise speed,
+# reverse and pause.
+run 8
+press left
+run 10
 press left
 run 80
 shot falls-start           0fd93b6e # moon, cliffs, falls, pool, spray in full flow
